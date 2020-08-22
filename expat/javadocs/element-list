@@ -1,6 +1,6 @@
-com.lambdaschool.usermodel
-com.lambdaschool.usermodel.config
-com.lambdaschool.usermodel.controllers
-com.lambdaschool.usermodel.models
-com.lambdaschool.usermodel.repository
-com.lambdaschool.usermodel.services
+com.lambdaschool.expat
+com.lambdaschool.expat.config
+com.lambdaschool.expat.controllers
+com.lambdaschool.expat.models
+com.lambdaschool.expat.repository
+com.lambdaschool.expat.services
