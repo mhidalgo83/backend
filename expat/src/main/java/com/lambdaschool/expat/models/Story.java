@@ -5,6 +5,7 @@ import org.springframework.data.domain.AuditorAware;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,14 @@ public class Story extends Auditable {
             orphanRemoval = true)
     @JsonIgnoreProperties("story")
     private Set<UserStories> userStories = new HashSet<>();
+
+    @OneToMany(mappedBy = "story",
+               cascade = CascadeType.ALL,
+               orphanRemoval = true)
+    @JsonIgnoreProperties("story")
+    private List<Photo> photos;
+
+
 
     public Story() {
     }
