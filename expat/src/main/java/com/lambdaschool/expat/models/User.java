@@ -160,4 +160,19 @@ public class User extends Auditable {
         this.password = password;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public Set<UserStories> getUserStories() {
+        return userStories;
+    }
+
+    public void setUserStories(Set<UserStories> userStories) {
+        this.userStories = userStories;
+    }
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tables")
-public class Photo {
+public class Photo extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -78,4 +78,5 @@ public class Photo {
     public void setStory(Story story) {
         this.story = story;
     }
+
 }
