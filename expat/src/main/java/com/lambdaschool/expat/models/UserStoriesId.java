@@ -28,7 +28,7 @@ public class UserStoriesId implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, story);
+        return 37;
     }
 
     @Override

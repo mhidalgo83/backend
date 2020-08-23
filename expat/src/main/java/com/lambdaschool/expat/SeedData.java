@@ -1,16 +1,15 @@
 package com.lambdaschool.expat;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.service.FakeValuesService;
-import com.github.javafaker.service.RandomService;
+import com.lambdaschool.expat.models.Photo;
 import com.lambdaschool.expat.models.User;
+import com.lambdaschool.expat.services.PhotoService;
+import com.lambdaschool.expat.services.StoryService;
 import com.lambdaschool.expat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Locale;
 
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
@@ -29,6 +28,12 @@ public class SeedData implements CommandLineRunner
     @Autowired
     UserService userService;
 
+    @Autowired
+    StoryService storyService;
+
+    @Autowired
+    PhotoService photoService;
+
     /**
      * Generates test, seed data for our application
      * First a set of known data is seeded into our database.
@@ -43,36 +48,40 @@ public class SeedData implements CommandLineRunner
     public void run(String[] args) throws Exception
     {
         userService.deleteAll();
+        storyService.deleteAll();
+        photoService.deleteAll();
 
 
-        // admin, data, user
-        User u1 = new User("admin",
+
+        User u1 = new User("Tom Jones",
                            "password",
-                           "admin@lambdaschool.local");
+                           "tom@lambdaschool.local");
         userService.save(u1);
 
-        // data, user
-        User u2 = new User("cinnamon",
-                           "1234567",
-                           "cinnamon@lambdaschool.local");
+        User u2 = new User("Bob Jones",
+                           "password",
+                           "bob@lambdaschool.local");
         userService.save(u2);
 
-        // user
-        User u3 = new User("barnbarn",
-                           "ILuvM4th!",
-                           "barnbarn@lambdaschool.local");
+        User u3 = new User("Jon Jones",
+                           "password",
+                           "jon@lambdaschool.local");
         userService.save(u3);
 
-        User u4 = new User("puttat",
+        User u4 = new User("Jim Jones",
                            "password",
-                           "puttat@school.lambda");
+                           "jim@school.lambda");
 
         userService.save(u4);
 
-        User u5 = new User("misskitty",
+        User u5 = new User("Liz Jones",
                            "password",
-                           "misskitty@school.lambda");
+                           "liz@school.lambda");
         userService.save(u5);
+
+
+
+
 
     }
 }
