@@ -48,21 +48,21 @@ public class SeedData implements CommandLineRunner
     public void run(String[] args) throws Exception
     {
         userService.deleteAll();
+        storyService.deleteAll();
+        photoService.deleteAll();
 
 
-        // admin, data, user
+
         User u1 = new User("Tom Jones",
                            "password",
                            "tom@lambdaschool.local");
         userService.save(u1);
 
-        // data, user
         User u2 = new User("Bob Jones",
                            "password",
                            "bob@lambdaschool.local");
         userService.save(u2);
 
-        // user
         User u3 = new User("Jon Jones",
                            "password",
                            "jon@lambdaschool.local");
@@ -78,6 +78,7 @@ public class SeedData implements CommandLineRunner
                            "password",
                            "liz@school.lambda");
         userService.save(u5);
+
 
 
 

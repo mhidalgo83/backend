@@ -98,7 +98,7 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Transactional
     @Override
-    public void deleteAll(long id) {
+    public void deleteAll() {
         photorepos.deleteAll();
     }
 }

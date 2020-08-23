@@ -12,7 +12,7 @@ public interface PhotoService {
 
     void delete(long id);
 
-    void deleteAll(long id);
+    void deleteAll();
 
     List<Photo> findAllPhotos();
 
