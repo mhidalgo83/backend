@@ -81,4 +81,12 @@ public class Story extends Auditable {
     public void setUserStories(Set<UserStories> userStories) {
         this.userStories = userStories;
     }
+
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
 }
