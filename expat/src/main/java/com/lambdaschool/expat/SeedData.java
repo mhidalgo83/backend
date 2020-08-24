@@ -55,28 +55,28 @@ public class SeedData implements CommandLineRunner {
         photoService.deleteAll();
 
 
-        User u1 = new User("Tom Jones",
+        User u1 = new User("tomjones",
                 "password",
                 "tom@lambdaschool.local");
         u1 = userService.save(u1);
 
-        User u2 = new User("Bob Jones",
+        User u2 = new User("bobjones",
                 "password",
                 "bob@lambdaschool.local");
         u2 = userService.save(u2);
 
-        User u3 = new User("Jon Jones",
+        User u3 = new User("jonjones",
                 "password",
                 "jon@lambdaschool.local");
         u3 = userService.save(u3);
 
-        User u4 = new User("Jim Jones",
+        User u4 = new User("jimjones",
                 "password",
                 "jim@school.lambda");
 
         u4 = userService.save(u4);
 
-        User u5 = new User("Liz Jones",
+        User u5 = new User("lizjones",
                 "password",
                 "liz@school.lambda");
         u5 = userService.save(u5);

@@ -43,40 +43,40 @@ public class SeedData implements CommandLineRunner
     @Override
     public void run(String[] args) throws Exception
     {
-        userService.deleteAll();
-
-
-        // admin, data, user
-        User u1 = new User("admin",
-                           "password",
-                           "admin@lambdaschool.local");
-
-        userService.save(u1);
-
-        // data, user
-        User u2 = new User("cinnamon",
-                           "1234567",
-                           "cinnamon@lambdaschool.local");
-        userService.save(u2);
-
-        // user
-        User u3 = new User("barnbarn",
-                           "ILuvM4th!",
-                           "barnbarn@lambdaschool.local");
-
-        userService.save(u3);
-
-        User u4 = new User("puttat",
-                           "password",
-                           "puttat@school.lambda");
-
-        userService.save(u4);
-
-        User u5 = new User("misskitty",
-                           "password",
-                           "misskitty@school.lambda");
-
-        userService.save(u5);
+//        userService.deleteAll();
+//
+//
+//        // admin, data, user
+//        User u1 = new User("admin",
+//                           "password",
+//                           "admin@lambdaschool.local");
+//
+//        userService.save(u1);
+//
+//        // data, user
+//        User u2 = new User("cinnamon",
+//                           "1234567",
+//                           "cinnamon@lambdaschool.local");
+//        userService.save(u2);
+//
+//        // user
+//        User u3 = new User("barnbarn",
+//                           "ILuvM4th!",
+//                           "barnbarn@lambdaschool.local");
+//
+//        userService.save(u3);
+//
+//        User u4 = new User("puttat",
+//                           "password",
+//                           "puttat@school.lambda");
+//
+//        userService.save(u4);
+//
+//        User u5 = new User("misskitty",
+//                           "password",
+//                           "misskitty@school.lambda");
+//
+//        userService.save(u5);
 
     }
 }
