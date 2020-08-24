@@ -4,7 +4,10 @@ import com.lambdaschool.expat.models.Photo;
 import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
 import com.lambdaschool.expat.repository.PhotoRepository;
+import com.lambdaschool.expat.repository.StoryRepository;
+import com.lambdaschool.expat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,15 +28,18 @@ public class PhotoServiceImpl implements PhotoService {
     @Autowired
     StoryService storyService;
 
+    @Autowired
+    UserRepository userrepos;
+
+    @Autowired
+    StoryRepository storyrepos;
 
     @Transactional
     @Override
     public Photo save(Photo photo) {
         Photo newPhoto = new Photo();
 
-        User currentUser = userService.findUserById(photo.getUser().getUserid());
 
-        Story curStory = storyService.findStoryById(photo.getStory().getStoryid());
 
         if(photo.getPhotoid() != 0) {
             photorepos.findById(photo.getPhotoid())
@@ -42,9 +48,14 @@ public class PhotoServiceImpl implements PhotoService {
 
         newPhoto.setImageurl(photo.getImageurl());
         newPhoto.setDescription(photo.getDescription());
-
+        User currentUser = userrepos.findById(photo.getUser().getUserid())
+                .orElseThrow(() -> new EntityNotFoundException("User " + photo.getUser().getUserid() + " Not Found"));
+        Story curStory = storyrepos.findById(photo.getStory().getStoryid())
+                .orElseThrow(() -> new EntityNotFoundException("Story " + photo.getStory().getStoryid() + " Not Found"));
         newPhoto.setUser(currentUser);
         newPhoto.setStory(curStory);
+
+
 
         return photorepos.save(newPhoto);
     }
