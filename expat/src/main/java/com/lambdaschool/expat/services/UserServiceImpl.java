@@ -90,7 +90,7 @@ public class UserServiceImpl
 
         newUser.setUsername(user.getUsername()
                                     .toLowerCase());
-        newUser.setPassword(user.getPassword());
+        newUser.setPasswordNoEncrypt(user.getPassword());
         newUser.setPrimaryemail(user.getPrimaryemail()
                                         .toLowerCase());
 
