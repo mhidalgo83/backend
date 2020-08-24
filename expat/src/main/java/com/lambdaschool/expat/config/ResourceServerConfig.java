@@ -53,6 +53,10 @@ public class ResourceServerConfig
                         "/webjars/**",
                         "/createnewuser")
                 .permitAll()
+                .antMatchers("/users/**",
+                        "/stories/**",
+                        "/photos/**")
+                .authenticated()
 //                .antMatchers(HttpMethod.POST,
 //                        "/users/**")
 //                .hasAnyRole("ADMIN")

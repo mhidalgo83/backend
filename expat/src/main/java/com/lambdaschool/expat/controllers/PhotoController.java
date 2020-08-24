@@ -36,10 +36,10 @@ public class PhotoController {
     }
 
     //POST photo
-    @PostMapping(value = "/photo", consumes = "application/json")
-    public ResponseEntity<?> addNewPhoto(@Valid @RequestBody Photo newPhoto) {
+    @PostMapping(value = "/photo/story/{storyid}", consumes = "application/json")
+    public ResponseEntity<?> addNewPhoto(@Valid @RequestBody Photo newPhoto, @PathVariable long storyid) {
         newPhoto.setPhotoid(0);
-        newPhoto = photoService.save(newPhoto);
+        newPhoto = photoService.save(newPhoto, storyid);
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newPhotoURI = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{userid}")
