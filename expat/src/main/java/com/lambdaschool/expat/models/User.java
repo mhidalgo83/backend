@@ -55,12 +55,6 @@ public class User extends Auditable {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties("user")
-    private List<Photo> photos;
-
-    @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    @JsonIgnoreProperties("user")
     private Set<UserStories> userStories = new HashSet<>();
     /**
      * A list of emails for this user
@@ -174,13 +168,6 @@ public class User extends Auditable {
         this.password = passwordEncoder.encode(password);
     }
 
-    public List<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
-    }
 
     public Set<UserStories> getUserStories() {
         return userStories;

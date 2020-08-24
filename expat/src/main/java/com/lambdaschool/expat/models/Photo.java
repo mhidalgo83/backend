@@ -19,12 +19,6 @@ public class Photo extends Auditable {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "userid",
-    nullable = false)
-    @JsonIgnoreProperties(value = "photos", allowSetters = true)
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "storyid", nullable = false)
     @JsonIgnoreProperties(value = "photos", allowSetters = true)
     private Story story;
@@ -32,10 +26,9 @@ public class Photo extends Auditable {
     public Photo() {
     }
 
-    public Photo(String imageurl, String description, User user, Story story) {
+    public Photo(String imageurl, String description, Story story) {
         this.imageurl = imageurl;
         this.description = description;
-        this.user = user;
         this.story = story;
     }
 
@@ -63,13 +56,6 @@ public class Photo extends Auditable {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Story getStory() {
         return story;

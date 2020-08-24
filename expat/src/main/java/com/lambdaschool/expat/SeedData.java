@@ -98,32 +98,32 @@ public class SeedData implements CommandLineRunner {
         s5 = storyService.save(s1);
 
 //
-        Photo p1 = new Photo("https://picsum.photos/id/10/200/300", "A new pic", u1, s1);
-        p1 = photoService.save(p1);
+        Photo p1 = new Photo("https://picsum.photos/id/10/200/300", "A new pic", s1);
+        p1 = photoService.seedSave(p1);
 
-        Photo p2 = new Photo("https://picsum.photos/id/100/200/300", "A new pic", u2, s2);
-        p2 = photoService.save(p2);
+        Photo p2 = new Photo("https://picsum.photos/id/100/200/300", "A new pic", s2);
+        p2 = photoService.seedSave(p2);
 
-        Photo p3 = new Photo("https://picsum.photos/id/1001/200/300", "A new pic", u2, s2);
-        p3 = photoService.save(p3);
+        Photo p3 = new Photo("https://picsum.photos/id/1001/200/300", "A new pic", s2);
+        p3 = photoService.seedSave(p3);
 
-        Photo p4 = new Photo("https://picsum.photos/id/1002/200/300", "A new pic", u3, s3);
-        p4 = photoService.save(p4);
+        Photo p4 = new Photo("https://picsum.photos/id/1002/200/300", "A new pic", s3);
+        p4 = photoService.seedSave(p4);
 
-        Photo p5 = new Photo("https://picsum.photos/id/1003/200/300", "A new pic", u4, s4);
-        p5 = photoService.save(p5);
+        Photo p5 = new Photo("https://picsum.photos/id/1003/200/300", "A new pic", s4);
+        p5 = photoService.seedSave(p5);
 
-        Photo p6 = new Photo("https://picsum.photos/id/1004/200/300", "A new pic", u1, s1);
-        p6 = photoService.save(p6);
+        Photo p6 = new Photo("https://picsum.photos/id/1004/200/300", "A new pic", s1);
+        p6 = photoService.seedSave(p6);
 
-        Photo p7 = new Photo("https://picsum.photos/id/1005/200/300", "A new pic", u1, s1);
-        p7 = photoService.save(p7);
+        Photo p7 = new Photo("https://picsum.photos/id/1005/200/300", "A new pic", s1);
+        p7 = photoService.seedSave(p7);
 
-        Photo p8 = new Photo("https://picsum.photos/id/1006/200/300", "A new pic", u5, s5);
-        p8 = photoService.save(p8);
+        Photo p8 = new Photo("https://picsum.photos/id/1006/200/300", "A new pic", s5);
+        p8 = photoService.seedSave(p8);
 
-        Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", u5, s5);
-        p9 = photoService.save(p9);
+        Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", s5);
+        p9 = photoService.seedSave(p9);
 
         Set<UserStories> userstories = new HashSet<>();
         userstories.add(new UserStories(u1, s1));

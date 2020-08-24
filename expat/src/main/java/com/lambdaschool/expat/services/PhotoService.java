@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface PhotoService {
 
-    Photo save(Photo photo);
+    Photo seedSave(Photo photo);
+
+    Photo save(Photo photo, long id);
 
     Photo findPhotoById(long id);
 

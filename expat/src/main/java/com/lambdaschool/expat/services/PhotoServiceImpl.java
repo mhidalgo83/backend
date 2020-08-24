@@ -7,7 +7,8 @@ import com.lambdaschool.expat.repository.PhotoRepository;
 import com.lambdaschool.expat.repository.StoryRepository;
 import com.lambdaschool.expat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @Service(value = "photoService")
 public class PhotoServiceImpl implements PhotoService {
 
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     @Autowired
     PhotoRepository photorepos;
 
@@ -36,9 +38,31 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Transactional
     @Override
-    public Photo save(Photo photo) {
+    public Photo save(Photo photo, long id) {
         Photo newPhoto = new Photo();
 
+        if(photo.getPhotoid() != 0) {
+            photorepos.findById(photo.getPhotoid())
+                    .orElseThrow(() -> new EntityNotFoundException("Photo " + photo.getPhotoid() + " Not Found"));
+        }
+
+        // if photo's user is null, then set it to current authenticated user, else use user
+        // attached in seed data
+
+        newPhoto.setImageurl(photo.getImageurl());
+        newPhoto.setDescription(photo.getDescription());
+
+        Story curStory = storyrepos.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Story " + id + " Not Found"));
+
+        newPhoto.setStory(curStory);
+
+        return photorepos.save(newPhoto);
+    }
+
+    @Override
+    public Photo seedSave(Photo photo) {
+        Photo newPhoto = new Photo();
 
 
         if(photo.getPhotoid() != 0) {
@@ -46,16 +70,16 @@ public class PhotoServiceImpl implements PhotoService {
                     .orElseThrow(() -> new EntityNotFoundException("Photo " + photo.getPhotoid() + " Not Found"));
         }
 
+        // if photo's user is null, then set it to current authenticated user, else use user
+        // attached in seed data
+
         newPhoto.setImageurl(photo.getImageurl());
         newPhoto.setDescription(photo.getDescription());
-        User currentUser = userrepos.findById(photo.getUser().getUserid())
-                .orElseThrow(() -> new EntityNotFoundException("User " + photo.getUser().getUserid() + " Not Found"));
+
         Story curStory = storyrepos.findById(photo.getStory().getStoryid())
                 .orElseThrow(() -> new EntityNotFoundException("Story " + photo.getStory().getStoryid() + " Not Found"));
-        newPhoto.setUser(currentUser);
+
         newPhoto.setStory(curStory);
-
-
 
         return photorepos.save(newPhoto);
     }
@@ -71,10 +95,6 @@ public class PhotoServiceImpl implements PhotoService {
 
         if(photo.getDescription() != null) {
             curPhoto.setDescription(photo.getDescription());
-        }
-
-        if (photo.getUser() != null) {
-            curPhoto.setUser(photo.getUser());
         }
 
         if(photo.getStory() != null) {
