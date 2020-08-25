@@ -37,8 +37,8 @@ public class SeedData implements CommandLineRunner {
     @Autowired
     StoryService storyService;
 
-//    @Autowired
-//    PhotoService photoService;
+    @Autowired
+    PhotoService photoService;
 
     /**
      * Generates test, seed data for our application
@@ -57,7 +57,7 @@ public class SeedData implements CommandLineRunner {
     public void run(String[] args) throws Exception {
         userService.deleteAll();
         storyService.deleteAll();
-//        photoService.deleteAll();
+        photoService.deleteAll();
 
 
         User u1 = new User("tomjones",
