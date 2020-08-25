@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -58,7 +57,7 @@ public class StoryServiceImplTest {
         User u5 = new User("Liz Jones",
                 "password",
                 "liz@school.lambda");
-        s5.getUserStories().add(new UserStories(u5, s5));
+        s5.getUserstories().add(new UserStories(u5, s5));
     }
 
     @Test
@@ -69,7 +68,7 @@ public class StoryServiceImplTest {
         u5.setUserid(20);
 
         Story s5 = new Story("Test Story", "Germany", "My travels begin...");
-        s5.getUserStories().add(new UserStories(u5, s5));
+        s5.getUserstories().add(new UserStories(u5, s5));
 
         Story updateds5 = storyService.update(s5, 27);
 

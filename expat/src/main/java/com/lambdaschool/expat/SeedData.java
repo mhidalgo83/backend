@@ -82,24 +82,42 @@ public class SeedData implements CommandLineRunner {
         u5 = userService.save(u5);
 
 
+//        Story s1 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
+//        s1.getUserstories().add(new UserStories(u1, new Story()));
+//        s1 = storyService.save(s1);
+        Set<UserStories> userstories = new HashSet<>();
         Story s1 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
-        s1 = storyService.save(s1);
+        userstories.add(new UserStories(u1, s1));
+//        s1 = storyService.save(s1);
+        u1.setUserstories(userstories);
 
+        userstories = new HashSet<>();
         Story s2 = new Story("Another Trip", "Australia", "We had a great time in Sydney...");
-        s2 = storyService.save(s1);
+        userstories.add(new UserStories(u2, s2));
+//        s2 = storyService.save(s2);
+        u2.setUserstories(userstories);
 
+        userstories = new HashSet<>();
         Story s3 = new Story("My Trip", "China", "We had a great time in Shanghai...");
-        s3 = storyService.save(s1);
+        userstories.add(new UserStories(u3, s3));
+        u3.setUserstories(userstories);
 
+        userstories = new HashSet<>();
         Story s4 = new Story("My Trip", "Thailand", "We had a great time in Bangkok...");
-        s4 = storyService.save(s1);
+        userstories.add(new UserStories(u4, s4));
+        u4.setUserstories(userstories);
 
+        userstories = new HashSet<>();
         Story s5 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
-        s5 = storyService.save(s1);
+        userstories.add(new UserStories(u5, s5));
+        u5.setUserstories(userstories);
 
-//
         Photo p1 = new Photo("https://picsum.photos/id/10/200/300", "A new pic", s1);
         p1 = photoService.seedSave(p1);
+//        photoService.save(p1, s1.getStoryid());
+//        s1.getPhotos().add(p1);
+//        s1 = storyService.findStoryById(s1.getStoryid());
+//        s1.getPhotos().add(p1);
 
         Photo p2 = new Photo("https://picsum.photos/id/100/200/300", "A new pic", s2);
         p2 = photoService.seedSave(p2);
@@ -107,37 +125,23 @@ public class SeedData implements CommandLineRunner {
         Photo p3 = new Photo("https://picsum.photos/id/1001/200/300", "A new pic", s2);
         p3 = photoService.seedSave(p3);
 
-        Photo p4 = new Photo("https://picsum.photos/id/1002/200/300", "A new pic", s3);
-        p4 = photoService.seedSave(p4);
+//        Photo p4 = new Photo("https://picsum.photos/id/1002/200/300", "A new pic", s3);
+//        p4 = photoService.seedSave(p4);
+//
+//        Photo p5 = new Photo("https://picsum.photos/id/1003/200/300", "A new pic", s4);
+//        p5 = photoService.seedSave(p5);
 
-        Photo p5 = new Photo("https://picsum.photos/id/1003/200/300", "A new pic", s4);
-        p5 = photoService.seedSave(p5);
+//        Photo p6 = new Photo("https://picsum.photos/id/1004/200/300", "A new pic", s1);
+//        p6 = photoService.seedSave(p6);
+//
+//        Photo p7 = new Photo("https://picsum.photos/id/1005/200/300", "A new pic", s1);
+//        p7 = photoService.seedSave(p7);
+//
+//        Photo p8 = new Photo("https://picsum.photos/id/1006/200/300", "A new pic", s5);
+//        p8 = photoService.seedSave(p8);
+//
+//        Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", s5);
+//        p9 = photoService.seedSave(p9);
 
-        Photo p6 = new Photo("https://picsum.photos/id/1004/200/300", "A new pic", s1);
-        p6 = photoService.seedSave(p6);
-
-        Photo p7 = new Photo("https://picsum.photos/id/1005/200/300", "A new pic", s1);
-        p7 = photoService.seedSave(p7);
-
-        Photo p8 = new Photo("https://picsum.photos/id/1006/200/300", "A new pic", s5);
-        p8 = photoService.seedSave(p8);
-
-        Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", s5);
-        p9 = photoService.seedSave(p9);
-
-        Set<UserStories> userstories = new HashSet<>();
-        userstories.add(new UserStories(u1, s1));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u2, s2));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u3, s3));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u4, s4));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u5, s5));
     }
 }
