@@ -55,7 +55,7 @@ public class User extends Auditable {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties("user")
-    private Set<UserStories> userStories = new HashSet<>();
+    private Set<UserStories> userstories = new HashSet<>();
     /**
      * A list of emails for this user
      */
@@ -169,12 +169,12 @@ public class User extends Auditable {
     }
 
 
-    public Set<UserStories> getUserStories() {
-        return userStories;
+    public Set<UserStories> getUserstories() {
+        return userstories;
     }
 
-    public void setUserStories(Set<UserStories> userStories) {
-        this.userStories = userStories;
+    public void setUserstories(Set<UserStories> userStories) {
+        this.userstories = userStories;
     }
 
     public String getRole() {

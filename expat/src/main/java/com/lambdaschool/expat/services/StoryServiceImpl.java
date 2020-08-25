@@ -26,6 +26,8 @@ public class StoryServiceImpl implements StoryService {
     @Autowired
     UserRepository userrepos;
 
+
+
     @Override
     public List<Story> findAll() {
         List<Story> list = new ArrayList<>();
@@ -55,26 +57,30 @@ public class StoryServiceImpl implements StoryService {
 
     @Transactional
     @Override
-    public Story save(Story story) {
+    public Story save(Story story){
         Story newStory = new Story();
+//        User u = userrepos.findById(user.getUserid())
+//                .orElseThrow(() -> new EntityNotFoundException("User id " + user.getUserid() + " not found"));
+
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if(story.getStoryid() != 0){
             storyrepos.findById(story.getStoryid())
                     .orElseThrow(() -> new EntityNotFoundException("Story with id " + story.getStoryid() + " Not Found"));
         }
-
+//        User currentUser = userrepos.findByUsername(authentication.getName());
         newStory.setTitle(story.getTitle());
         newStory.setLocation(story.getLocation());
         newStory.setDescription(story.getDescription());
 
-        newStory.getUserStories()
+        newStory.getUserstories()
                 .clear();
-        for(UserStories s : story.getUserStories()){
-            User addUser = userrepos.findById(s.getUser().getUserid())
+        for(UserStories s : story.getUserstories()){
+        User currentUser = userrepos.findById(s.getUser().getUserid())
                     .orElseThrow(() -> new EntityNotFoundException("User Id " + s.getUser()
                     .getUserid() + " Not Found"));
-            newStory.getUserStories()
-                    .add(new UserStories(addUser, newStory));
+//        newStory.getUserStories()
+//                .add(new UserStories(currentUser, newStory));
         }
         return storyrepos.save(newStory);
     }
@@ -93,12 +99,12 @@ public class StoryServiceImpl implements StoryService {
         if (story.getDescription() != null){
             currentStory.setDescription(story.getDescription());
         }
-        if(story.getUserStories().size() > 0){
-            for (UserStories s : story.getUserStories()){
+        if(story.getUserstories().size() > 0){
+            for (UserStories s : story.getUserstories()){
                 User addUser = userrepos.findById(s.getUser().getUserid())
                         .orElseThrow(() -> new EntityNotFoundException("User Id " + s.getUser()
                                 .getUserid() + " Not Found"));
-                currentStory.getUserStories().add(new UserStories(addUser, currentStory));
+                currentStory.getUserstories().add(new UserStories(addUser, currentStory));
             }
         }
         return storyrepos.save(currentStory);

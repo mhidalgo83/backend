@@ -1,11 +1,15 @@
 package com.lambdaschool.expat.controllers;
 
 import com.lambdaschool.expat.models.Story;
+import com.lambdaschool.expat.models.User;
+import com.lambdaschool.expat.models.UserStories;
 import com.lambdaschool.expat.services.StoryService;
+import com.lambdaschool.expat.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -22,6 +26,9 @@ public class StoryController {
     @Autowired
     StoryService storyService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping(value = "/stories", produces = {"application/json"})
     public ResponseEntity<?> listAllStories(HttpServletRequest request){
         List<Story> myStories = storyService.findAll();
@@ -35,10 +42,17 @@ public class StoryController {
     }
 
     @PostMapping(value ="/story", consumes = "application/json")
-    public ResponseEntity<?> addNewStory(@Valid @RequestBody Story newStory) throws
+    public ResponseEntity<?> addNewStory(@Valid @RequestBody Story newStory,
+                                         Authentication authentication) throws
             URISyntaxException{
+        User currentUser = userService.findByName(authentication.getName());
         newStory.setStoryid(0);
+        newStory.getUserstories().add(new UserStories(currentUser, newStory));
         newStory = storyService.save(newStory);
+
+//        User u = userService.findByName(authentication.getName());
+
+//        newStory.setUserStories(u);
 
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newStoryURI = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -53,16 +67,18 @@ public class StoryController {
     }
 
     @PutMapping(value = "/story/{storyid}", consumes = "application/json")
-    public ResponseEntity<?> updateStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid){
+    public ResponseEntity<?> updateStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid, Authentication authentication){
         updateStory.setStoryid(storyid);
+//        User u = userService.findByName(authentication.getName());
+
         storyService.save(updateStory);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/story/{storyid}")
-    public ResponseEntity<?> deleteStoryById(@PathVariable long id){
-        storyService.delete(id);
+    public ResponseEntity<?> deleteStoryById(@PathVariable long storyid){
+        storyService.delete(storyid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,7 +1,6 @@
 package com.lambdaschool.expat.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.domain.AuditorAware;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -23,7 +22,7 @@ public class Story extends Auditable {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonIgnoreProperties("story")
-    private Set<UserStories> userStories = new HashSet<>();
+    private Set<UserStories> userstories = new HashSet<>();
 
     @OneToMany(mappedBy = "story",
                cascade = CascadeType.ALL,
@@ -74,12 +73,12 @@ public class Story extends Auditable {
         this.description = description;
     }
 
-    public Set<UserStories> getUserStories() {
-        return userStories;
+    public Set<UserStories> getUserstories() {
+        return userstories;
     }
 
-    public void setUserStories(Set<UserStories> userStories) {
-        this.userStories = userStories;
+    public void setUserstories(Set<UserStories> userStories) {
+        this.userstories = userStories;
     }
 
     public List<Photo> getPhotos() {

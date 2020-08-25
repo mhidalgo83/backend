@@ -11,9 +11,9 @@ public interface StoryService {
 
     void delete(long id);
 
-    Story save(Story role);
+    Story save(Story story);
 
-    Story update(Story role, long id);
+    Story update(Story story, long id);
 
     void deleteAll();
 }
