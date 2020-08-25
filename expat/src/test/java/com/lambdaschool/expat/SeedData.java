@@ -1,5 +1,6 @@
 package com.lambdaschool.expat;
 
+
 import com.lambdaschool.expat.models.Photo;
 import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
+
 
 
 /**
@@ -49,6 +51,9 @@ public class SeedData implements CommandLineRunner {
      */
     @Transactional
     @Override
+
+
+
     public void run(String[] args) throws Exception {
         userService.deleteAll();
         storyService.deleteAll();
