@@ -125,19 +125,6 @@ public class SeedData implements CommandLineRunner {
         Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", s5);
         p9 = photoService.seedSave(p9);
 
-        Set<UserStories> userstories = new HashSet<>();
-        userstories.add(new UserStories(u1, s1));
 
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u2, s2));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u3, s3));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u4, s4));
-
-        userstories = new HashSet<>();
-        userstories.add(new UserStories(u5, s5));
     }
 }

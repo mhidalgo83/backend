@@ -87,7 +87,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public Photo update(Photo photo, long id) {
         Photo curPhoto = photorepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Photo " + id + "Not Found"));
+                .orElseThrow(() -> new EntityNotFoundException("Photo " + id + " Not Found"));
 
         if(photo.getImageurl() != null) {
             curPhoto.setImageurl(photo.getImageurl());
