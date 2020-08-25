@@ -1,6 +1,7 @@
 package com.lambdaschool.expat.services;
 
 import com.lambdaschool.expat.ExpatApplication;
+import com.lambdaschool.expat.models.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,22 +29,28 @@ public class UserServiceImplTest {
 
     @Test
     public void findUserById() {
+        assertEquals("tomjones", userService.findUserById(1).getUsername());
     }
 
     @Test
     public void findByNameContaining() {
+        assertEquals("tomjones", userService.findByNameContaining("omj").get(0).getUsername());
     }
 
     @Test
     public void findAll() {
+        assertEquals(5, userService.findAll().size());
     }
 
     @Test
     public void delete() {
+        userService.delete(1);
+        assertEquals(4, userService.findAll().size());
     }
 
     @Test
     public void findByName() {
+        assertEquals("tomjones", userService.findByName("tomjones").getUsername());
     }
 
     @Test
@@ -52,9 +59,16 @@ public class UserServiceImplTest {
 
     @Test
     public void update() {
+        User u1 = new User("test",
+                "password",
+                "tom@lambdaschool.local");
+        userService.update(u1, 1);
+        assertEquals("test", userService.findUserById(1).getUsername());
     }
 
     @Test
     public void deleteAll() {
+        userService.deleteAll();
+        assertEquals(0, userService.findAll().size());
     }
 }
