@@ -58,7 +58,7 @@ public class StoryServiceImplTest {
                 "password",
                 "liz@school.lambda");
         u5.setUserid(1);
-        s5.getUserStories().add(new UserStories(u5, s5));
+        s5.getUserstories().add(new UserStories(u5, s5));
         storyService.save(s5);
         assertEquals(6, storyService.findAll().size());
 

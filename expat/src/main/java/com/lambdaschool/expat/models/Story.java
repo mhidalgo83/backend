@@ -21,7 +21,7 @@ public class Story extends Auditable {
     @OneToMany(mappedBy = "story",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    @JsonIgnoreProperties("story")
+    @JsonIgnoreProperties({"story"})
     private Set<UserStories> userstories = new HashSet<>();
 
     @OneToMany(mappedBy = "story",
