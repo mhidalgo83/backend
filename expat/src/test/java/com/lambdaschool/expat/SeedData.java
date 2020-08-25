@@ -1,8 +1,6 @@
 package com.lambdaschool.expat;
 
-import com.github.javafaker.Faker;
-import com.github.javafaker.service.FakeValuesService;
-import com.github.javafaker.service.RandomService;
+
 import com.lambdaschool.expat.models.Photo;
 import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
@@ -16,8 +14,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
+
+
 
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
@@ -27,9 +26,7 @@ import java.util.Set;
  */
 @Transactional
 @Component
-public class SeedData implements CommandLineRunner
-{
-
+public class SeedData implements CommandLineRunner {
 
     /**
      * Connects the user service to this process
@@ -54,8 +51,10 @@ public class SeedData implements CommandLineRunner
      */
     @Transactional
     @Override
-    public void run(String[] args) throws Exception
-    {
+
+
+
+    public void run(String[] args) throws Exception {
         userService.deleteAll();
         storyService.deleteAll();
         photoService.deleteAll();
@@ -103,7 +102,8 @@ public class SeedData implements CommandLineRunner
         Story s5 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
         s5 = storyService.save(s1);
 
-//
+
+
         Photo p1 = new Photo("https://picsum.photos/id/10/200/300", "A new pic", s1);
         p1 = photoService.seedSave(p1);
 
@@ -130,6 +130,7 @@ public class SeedData implements CommandLineRunner
 
         Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", s5);
         p9 = photoService.seedSave(p9);
+
 
         Set<UserStories> userstories = new HashSet<>();
         userstories.add(new UserStories(u1, s1));

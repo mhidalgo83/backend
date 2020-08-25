@@ -113,7 +113,7 @@
     </dependencies>
 
     <build>
-        <finalName>expat-journal</finalName>
+        <finalName>sj-mh-expat-journal</finalName>
 
         <plugins>
             <plugin>
