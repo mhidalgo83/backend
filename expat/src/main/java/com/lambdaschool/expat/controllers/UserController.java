@@ -170,7 +170,7 @@ public class UserController
             @PathVariable
                     long userid)
     {
-        
+
         userService.update(updateUser, userid);
 
         return new ResponseEntity<>(HttpStatus.OK);
