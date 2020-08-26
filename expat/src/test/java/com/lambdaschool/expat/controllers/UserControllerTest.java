@@ -291,7 +291,20 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateFullUser() {
+    public void updateFullUser() throws Exception {
+        String apiUrl = "/users/user/1";
+
+        User u4 = new User("jimjones",
+                "password",
+                "jim@school.lambda");
+        ObjectMapper mapper = new ObjectMapper();
+        String userString = mapper.writeValueAsString(u4);
+        Mockito.when(userService.update(u4, 1)).thenReturn(u4);
+        RequestBuilder rb = MockMvcRequestBuilders.put(apiUrl)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(userString);
+        mockMvc.perform(rb).andExpect(status().is2xxSuccessful()).andDo(MockMvcResultHandlers.print());
     }
 
     @Test
