@@ -45,10 +45,12 @@ public class StoryController {
     public ResponseEntity<?> addNewStory(@Valid @RequestBody Story newStory,
                                          Authentication authentication) throws
             URISyntaxException{
+
         User currentUser = userService.findByName(authentication.getName());
         newStory.setStoryid(0);
-        newStory.getUserstories().add(new UserStories(currentUser, newStory));
+//        newStory.getUserstories().add(new UserStories(currentUser, newStory));
         newStory = storyService.save(newStory);
+        newStory.getUserstories().add(new UserStories(currentUser, newStory));
 
 //        User u = userService.findByName(authentication.getName());
 
@@ -63,7 +65,7 @@ public class StoryController {
 
         //will build method to add story to user depending on who is logged in
 
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(newStory, responseHeaders, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/story/{storyid}", consumes = "application/json")
