@@ -1,6 +1,7 @@
 package com.lambdaschool.expat.services;
 
 
+import com.lambdaschool.expat.exceptions.ResourceNotFoundException;
 import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
 import com.lambdaschool.expat.models.UserStories;
@@ -40,7 +41,7 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public Story findStoryById(long id) {
         return storyrepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Story with id " + id + " Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Story with id " + id + " Not Found"));
     }
 
     @Transactional
@@ -50,7 +51,7 @@ public class StoryServiceImpl implements StoryService {
         if (storyrepos.findById(id).isPresent()){
             storyrepos.deleteById(id);
         } else {
-            throw new EntityNotFoundException("Story with id " + id + " Not Found");
+            throw new ResourceNotFoundException("Story with id " + id + " Not Found");
         }
 
     }
@@ -62,7 +63,7 @@ public class StoryServiceImpl implements StoryService {
 
         if(story.getStoryid() != 0){
             storyrepos.findById(story.getStoryid())
-                    .orElseThrow(() -> new EntityNotFoundException("Story with id " + story.getStoryid() + " Not Found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Story with id " + story.getStoryid() + " Not Found"));
         }
 
         newStory.setTitle(story.getTitle());
@@ -73,7 +74,7 @@ public class StoryServiceImpl implements StoryService {
                 .clear();
         for(UserStories s : story.getUserstories()){
         User currentUser = userrepos.findById(s.getUser().getUserid())
-                    .orElseThrow(() -> new EntityNotFoundException("User Id " + s.getUser()
+                    .orElseThrow(() -> new ResourceNotFoundException("User Id " + s.getUser()
                     .getUserid() + " Not Found"));
         newStory.getUserstories()
                 .add(new UserStories(currentUser, newStory));
@@ -83,8 +84,8 @@ public class StoryServiceImpl implements StoryService {
 
     @Transactional
     @Override
-    public Story update(Story story, long id) {
-        Story currentStory = findStoryById(id);
+    public Story update(Story story, long storyid) {
+        Story currentStory = findStoryById(storyid);
 
         if(story.getTitle() != null){
             currentStory.setTitle(story.getTitle());
@@ -98,7 +99,7 @@ public class StoryServiceImpl implements StoryService {
         if(story.getUserstories().size() > 0){
             for (UserStories s : story.getUserstories()){
                 User addUser = userrepos.findById(s.getUser().getUserid())
-                        .orElseThrow(() -> new EntityNotFoundException("User Id " + s.getUser()
+                        .orElseThrow(() -> new ResourceNotFoundException("User Id " + s.getUser()
                                 .getUserid() + " Not Found"));
                 currentStory.getUserstories().add(new UserStories(addUser, currentStory));
             }

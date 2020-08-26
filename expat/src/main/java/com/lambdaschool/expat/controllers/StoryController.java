@@ -77,13 +77,21 @@ public class StoryController {
     }
 
     @PutMapping(value = "/story/{storyid}", consumes = "application/json")
-    public ResponseEntity<?> updateStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid){
+    public ResponseEntity<?> updateFullStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid){
+
         updateStory.setStoryid(storyid);
 //        User u = userService.findByName(authentication.getName());
 
         storyService.update(updateStory, storyid);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(updateStory, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/story/{storyid}", consumes = "application/json")
+    public ResponseEntity<?> updateStory(
+            @RequestBody Story updateStory, @PathVariable long storyid){
+        storyService.update(updateStory, storyid);
+        return new ResponseEntity<>(updateStory, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/story/{storyid}")

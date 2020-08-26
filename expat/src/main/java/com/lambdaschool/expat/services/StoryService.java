@@ -13,7 +13,7 @@ public interface StoryService {
 
     Story save(Story story);
 
-    Story update(Story story, long id);
+    Story update(Story story, long storyid);
 
     void deleteAll();
 }
