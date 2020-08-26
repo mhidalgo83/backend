@@ -1,62 +1,62 @@
-package com.lambdaschool.expat;
-
-
-import com.lambdaschool.expat.models.Photo;
-import com.lambdaschool.expat.models.Story;
-import com.lambdaschool.expat.models.User;
-import com.lambdaschool.expat.models.UserStories;
-import com.lambdaschool.expat.services.PhotoService;
-import com.lambdaschool.expat.services.StoryService;
-import com.lambdaschool.expat.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-
-
-/**
- * SeedData puts both known and random data into the database. It implements CommandLineRunner.
- * <p>
- * CoomandLineRunner: Spring Boot automatically runs the run method once and only once
- * after the application context has been loaded.
- */
-@Transactional
-//@Component
-public class SeedData implements CommandLineRunner {
-
-    /**
-     * Connects the user service to this process
-     */
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    StoryService storyService;
-
-    @Autowired
-    PhotoService photoService;
-
-    /**
-     * Generates test, seed data for our application
-     * First a set of known data is seeded into our database.
-     * Second a random set of data using Java Faker is seeded into our database.
-     * Note this process does not remove data from the database. So if data exists in the database
-     * prior to running this process, that data remains in the database.
-     *
-     * @param args The parameter is required by the parent interface but is not used in this process.
-     */
-    @Transactional
-    @Override
-
-
-
-    public void run(String[] args) throws Exception {
+//package com.lambdaschool.expat;
+//
+//
+//import com.lambdaschool.expat.models.Photo;
+//import com.lambdaschool.expat.models.Story;
+//import com.lambdaschool.expat.models.User;
+//import com.lambdaschool.expat.models.UserStories;
+//import com.lambdaschool.expat.services.PhotoService;
+//import com.lambdaschool.expat.services.StoryService;
+//import com.lambdaschool.expat.services.UserService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.CommandLineRunner;
+//import org.springframework.stereotype.Component;
+//import org.springframework.transaction.annotation.Transactional;
+//
+//import java.util.ArrayList;
+//import java.util.HashSet;
+//import java.util.List;
+//import java.util.Set;
+//
+//
+//
+///**
+// * SeedData puts both known and random data into the database. It implements CommandLineRunner.
+// * <p>
+// * CoomandLineRunner: Spring Boot automatically runs the run method once and only once
+// * after the application context has been loaded.
+// */
+//@Transactional
+////@Component
+//public class SeedData implements CommandLineRunner {
+//
+//    /**
+//     * Connects the user service to this process
+//     */
+//    @Autowired
+//    UserService userService;
+//
+//    @Autowired
+//    StoryService storyService;
+//
+//    @Autowired
+//    PhotoService photoService;
+//
+//    /**
+//     * Generates test, seed data for our application
+//     * First a set of known data is seeded into our database.
+//     * Second a random set of data using Java Faker is seeded into our database.
+//     * Note this process does not remove data from the database. So if data exists in the database
+//     * prior to running this process, that data remains in the database.
+//     *
+//     * @param args The parameter is required by the parent interface but is not used in this process.
+//     */
+//    @Transactional
+//    @Override
+//
+//
+//
+//    public void run(String[] args) throws Exception {
 //        userService.deleteAll();
 //        storyService.deleteAll();
 //        photoService.deleteAll();
@@ -151,5 +151,5 @@ public class SeedData implements CommandLineRunner {
 //        us5.add(new UserStories(u5, s5));
 //        u5.setUserstories(us5);
 //        s5.setPhotos(photoList);
-    }
-}
+//    }
+//}

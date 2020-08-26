@@ -44,7 +44,7 @@ public class PhotoServiceImpl implements PhotoService {
 
         if(photo.getPhotoid() != 0) {
             photorepos.findById(photo.getPhotoid())
-                    .orElseThrow(() -> new EntityNotFoundException("Photo " + photo.getPhotoid() + " Not Found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Photo " + photo.getPhotoid() + " Not Found"));
         }
 
         // if photo's user is null, then set it to current authenticated user, else use user
@@ -54,7 +54,7 @@ public class PhotoServiceImpl implements PhotoService {
         newPhoto.setDescription(photo.getDescription());
 
         Story curStory = storyrepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Story " + id + " Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Story " + id + " Not Found"));
 
         newPhoto.setStory(curStory);
 
