@@ -194,14 +194,14 @@ public class StoryControllerTest {
         s2.getUserstories().add(new UserStories(u2, s2));
 
         ObjectMapper mapper = new ObjectMapper();
-        String bookString = mapper.writeValueAsString(s2);
+        String storyString = mapper.writeValueAsString(s2);
 
         Mockito.when(storyService.save(any(Story.class))).thenReturn(s2);
 
         RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(bookString);
+                .content(storyString);
 
         mockMvc.perform(rb).andExpect(status().isCreated()).andDo(MockMvcResultHandlers.print());
     }
