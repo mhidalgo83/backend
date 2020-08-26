@@ -1,5 +1,6 @@
 package com.lambdaschool.expat.services;
 
+import com.lambdaschool.expat.exceptions.ResourceNotFoundException;
 import com.lambdaschool.expat.models.Photo;
 import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
@@ -67,7 +68,7 @@ public class PhotoServiceImpl implements PhotoService {
 
         if(photo.getPhotoid() != 0) {
             photorepos.findById(photo.getPhotoid())
-                    .orElseThrow(() -> new EntityNotFoundException("Photo " + photo.getPhotoid() + " Not Found"));
+                    .orElseThrow(() -> new ResourceNotFoundException("Photo " + photo.getPhotoid() + " Not Found"));
         }
 
         // if photo's user is null, then set it to current authenticated user, else use user
@@ -77,7 +78,7 @@ public class PhotoServiceImpl implements PhotoService {
         newPhoto.setDescription(photo.getDescription());
 
         Story curStory = storyrepos.findById(photo.getStory().getStoryid())
-                .orElseThrow(() -> new EntityNotFoundException("Story " + photo.getStory().getStoryid() + " Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Story " + photo.getStory().getStoryid() + " Not Found"));
 
         newPhoto.setStory(curStory);
 
@@ -87,7 +88,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public Photo update(Photo photo, long id) {
         Photo curPhoto = photorepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Photo " + id + " Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Photo " + id + " Not Found"));
 
         if(photo.getImageurl() != null) {
             curPhoto.setImageurl(photo.getImageurl());
@@ -107,7 +108,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public Photo findPhotoById(long id) {
       Photo photo = photorepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Photo " + id + " Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Photo " + id + " Not Found"));
       return photo;
     }
 
@@ -123,7 +124,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void delete(long id) {
         photorepos.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Photo " + id + " Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Photo " + id + " Not Found"));
         photorepos.deleteById(id);
     }
 
