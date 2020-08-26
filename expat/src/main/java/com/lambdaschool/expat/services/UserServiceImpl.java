@@ -1,5 +1,6 @@
 package com.lambdaschool.expat.services;
 
+import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
 import com.lambdaschool.expat.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,4 +137,5 @@ public class UserServiceImpl
     {
         userrepos.deleteAll();
     }
+
 }

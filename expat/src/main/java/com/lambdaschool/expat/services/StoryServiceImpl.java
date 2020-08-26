@@ -59,16 +59,12 @@ public class StoryServiceImpl implements StoryService {
     @Override
     public Story save(Story story){
         Story newStory = new Story();
-//        User u = userrepos.findById(user.getUserid())
-//                .orElseThrow(() -> new EntityNotFoundException("User id " + user.getUserid() + " not found"));
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if(story.getStoryid() != 0){
             storyrepos.findById(story.getStoryid())
                     .orElseThrow(() -> new EntityNotFoundException("Story with id " + story.getStoryid() + " Not Found"));
         }
-//        User currentUser = userrepos.findByUsername(authentication.getName());
+
         newStory.setTitle(story.getTitle());
         newStory.setLocation(story.getLocation());
         newStory.setDescription(story.getDescription());
@@ -79,8 +75,8 @@ public class StoryServiceImpl implements StoryService {
         User currentUser = userrepos.findById(s.getUser().getUserid())
                     .orElseThrow(() -> new EntityNotFoundException("User Id " + s.getUser()
                     .getUserid() + " Not Found"));
-//        newStory.getUserStories()
-//                .add(new UserStories(currentUser, newStory));
+        newStory.getUserstories()
+                .add(new UserStories(currentUser, newStory));
         }
         return storyrepos.save(newStory);
     }

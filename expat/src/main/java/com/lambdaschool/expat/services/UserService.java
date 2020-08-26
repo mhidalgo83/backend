@@ -36,6 +36,7 @@ public interface UserService
      */
     User findUserById(long id);
 
+
     /**
      * Returns the user with the given name
      *

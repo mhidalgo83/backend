@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/stories")
@@ -41,6 +43,16 @@ public class StoryController {
         return new ResponseEntity<>(s, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/stories/user/{userid}", produces = "application/json")
+    public ResponseEntity<?> getStoriesByUserId(@PathVariable long userid) {
+        List<UserStories> storyList = new ArrayList<>();
+        User u = userService.findUserById(userid);
+        for (UserStories s : u.getUserstories()) {
+            storyList.add(s);
+        }
+        return new ResponseEntity<>(storyList, HttpStatus.OK);
+    }
+
     @PostMapping(value ="/story", consumes = "application/json")
     public ResponseEntity<?> addNewStory(@Valid @RequestBody Story newStory,
                                          Authentication authentication) throws
@@ -49,7 +61,7 @@ public class StoryController {
         newStory.setStoryid(0);
         newStory.getUserstories().add(new UserStories(currentUser, newStory));
         newStory = storyService.save(newStory);
-
+        
 //        User u = userService.findByName(authentication.getName());
 
 //        newStory.setUserStories(u);
