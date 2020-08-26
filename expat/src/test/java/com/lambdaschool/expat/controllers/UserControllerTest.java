@@ -130,8 +130,8 @@ public class UserControllerTest {
 
     @Test
     public void getUserById() throws Exception{
-        String apiUrl = "/users/user/12";
-        Mockito.when(userService.findUserById(12)).thenReturn(userList.get(0));
+        String apiUrl = "/users/user/1";
+        Mockito.when(userService.findUserById(1)).thenReturn(userList.get(0));
 
         RequestBuilder rb = MockMvcRequestBuilders.get(apiUrl).accept(MediaType.APPLICATION_JSON);
         MvcResult r = mockMvc.perform(rb).andReturn();

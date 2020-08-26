@@ -60,12 +60,9 @@ public class StoryController {
 
         User currentUser = userService.findByName(authentication.getName());
         newStory.setStoryid(0);
-//        newStory.getUserstories().add(new UserStories(currentUser, newStory));
+        newStory.getUserstories().add(new UserStories(currentUser, newStory));
         newStory = storyService.save(newStory);
-        
-//        User u = userService.findByName(authentication.getName());
 
-//        newStory.setUserStories(u);
 
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newStoryURI = ServletUriComponentsBuilder.fromCurrentRequest()
