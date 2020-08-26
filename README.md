@@ -20,3 +20,4 @@ http://sj-mh-expat-journal.herokuapp.com/
 | Create story (POST)     | /stories/story                    | { title:, location:, description: }     | NA                   |
 | Delete story (DELETE)   | /stories/story/{storyid}          | NA                                      | NA                   |
 | Update story (PUT)      | /stories/story/{storyid}          | { title:, location:, description: }     | NA                   |
+| Stories by userid (GET) | /stories/stories/user/{userid}    | NA                                      | Stories by userid    |
