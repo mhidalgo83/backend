@@ -83,8 +83,8 @@ public class StoryServiceImpl implements StoryService {
 
     @Transactional
     @Override
-    public Story update(Story story, long id) {
-        Story currentStory = findStoryById(id);
+    public Story update(Story story, long storyid) {
+        Story currentStory = findStoryById(storyid);
 
         if(story.getTitle() != null){
             currentStory.setTitle(story.getTitle());

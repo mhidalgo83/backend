@@ -60,7 +60,7 @@ public class StoryController {
 
         User currentUser = userService.findByName(authentication.getName());
         newStory.setStoryid(0);
-//        newStory.getUserstories().add(new UserStories(currentUser, newStory));
+        newStory.getUserstories().add(new UserStories(currentUser, newStory));
         newStory = storyService.save(newStory);
         
 //        User u = userService.findByName(authentication.getName());
@@ -80,13 +80,20 @@ public class StoryController {
     }
 
     @PutMapping(value = "/story/{storyid}", consumes = "application/json")
-    public ResponseEntity<?> updateStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid, Authentication authentication){
+    public ResponseEntity<?> updateFullStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid){
         updateStory.setStoryid(storyid);
 //        User u = userService.findByName(authentication.getName());
 
         storyService.save(updateStory);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(updateStory, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/story/{storyid}", consumes = "application/json")
+    public ResponseEntity<?> updateStory(
+            @RequestBody Story updateStory, @PathVariable long storyid){
+        storyService.update(updateStory, storyid);
+        return new ResponseEntity<>(updateStory, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/story/{storyid}")
