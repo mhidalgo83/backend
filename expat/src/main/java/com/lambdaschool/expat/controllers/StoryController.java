@@ -62,10 +62,7 @@ public class StoryController {
         newStory.setStoryid(0);
         newStory.getUserstories().add(new UserStories(currentUser, newStory));
         newStory = storyService.save(newStory);
-        
-//        User u = userService.findByName(authentication.getName());
 
-//        newStory.setUserStories(u);
 
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newStoryURI = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -81,10 +78,11 @@ public class StoryController {
 
     @PutMapping(value = "/story/{storyid}", consumes = "application/json")
     public ResponseEntity<?> updateFullStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid){
+
         updateStory.setStoryid(storyid);
 //        User u = userService.findByName(authentication.getName());
 
-        storyService.save(updateStory);
+        storyService.update(updateStory, storyid);
 
         return new ResponseEntity<>(updateStory, HttpStatus.OK);
     }
