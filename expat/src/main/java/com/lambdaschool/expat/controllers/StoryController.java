@@ -80,11 +80,11 @@ public class StoryController {
     }
 
     @PutMapping(value = "/story/{storyid}", consumes = "application/json")
-    public ResponseEntity<?> updateStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid, Authentication authentication){
+    public ResponseEntity<?> updateStory(@Valid @RequestBody Story updateStory, @PathVariable long storyid){
         updateStory.setStoryid(storyid);
 //        User u = userService.findByName(authentication.getName());
 
-        storyService.save(updateStory);
+        storyService.update(updateStory, storyid);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
