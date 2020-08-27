@@ -65,9 +65,11 @@ public class SeedData implements CommandLineRunner {
 
         Set<UserStories> us1 = new HashSet<>();
         Story s1 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
+        s1 = storyService.save(s1);
         User u1 = new User("tomjones",
                 "password",
                 "tom@lambdaschool.local");
+        u1 = userService.save(u1);
         List<Photo> photoList = new ArrayList<>();
         Photo p1 = new Photo("https://picsum.photos/id/10/200/300", "A new pic", s1);
         Photo p2 = new Photo("https://picsum.photos/id/100/200/300", "A new pic", s1);
@@ -78,15 +80,16 @@ public class SeedData implements CommandLineRunner {
         us1.add(new UserStories(u1, s1));
         u1.setUserstories(us1);
         s1.setPhotos(photoList);
-        u1 = userService.save(u1);
-        s1 = storyService.save(s1);
+
 
 
         Set<UserStories> us2 = new HashSet<>();
         Story s2 = new Story("Another Trip", "Australia", "We had a great time in Sydney...");
+        s2 = storyService.save(s2);
         User u2 = new User("bobjones",
                 "password",
                 "bob@lambdaschool.local");
+        u2 = userService.save(u2);
         photoList.clear();
         Photo p3 = new Photo("https://picsum.photos/id/1001/200/300", "A new pic", s2);
         Photo p4 = new Photo("https://picsum.photos/id/1002/200/300", "A new pic", s2);
@@ -97,14 +100,16 @@ public class SeedData implements CommandLineRunner {
         us2.add(new UserStories(u2, s2));
         u2.setUserstories(us2);
         s2.setPhotos(photoList);
-        u2 = userService.save(u2);
-        s2 = storyService.save(s2);
+
+
 
         Set<UserStories> us3 = new HashSet<>();
         Story s3 = new Story("My Trip", "China", "We had a great time in Shanghai...");
+        s3 = storyService.save(s3);
         User u3 = new User("jonjones",
                 "password",
                 "jon@lambdaschool.local");
+        u3 = userService.save(u3);
         photoList.clear();
         Photo p5 = new Photo("https://picsum.photos/id/1003/200/300", "A new pic", s3);
         Photo p6 = new Photo("https://picsum.photos/id/1004/200/300", "A new pic", s3);
@@ -115,14 +120,16 @@ public class SeedData implements CommandLineRunner {
         us3.add(new UserStories(u3, s3));
         u3.setUserstories(us3);
         s3.setPhotos(photoList);
-        u3 = userService.save(u3);
-        s3 = storyService.save(s3);
+
+
 
         Set<UserStories> us4 = new HashSet<>();
         Story s4 = new Story("My Trip", "Thailand", "We had a great time in Bangkok...");
+        s4 = storyService.save(s4);
         User u4 = new User("jimjones",
                 "password",
                 "jim@school.lambda");
+        u4 = userService.save(u4);
         photoList.clear();
         Photo p7 = new Photo("https://picsum.photos/id/1005/200/300", "A new pic", s4);
         Photo p8 = new Photo("https://picsum.photos/id/1006/200/300", "A new pic", s4);
@@ -133,14 +140,16 @@ public class SeedData implements CommandLineRunner {
         us4.add(new UserStories(u4, s4));
         u4.setUserstories(us4);
         s4.setPhotos(photoList);
-        u4 = userService.save(u4);
-        s4 = storyService.save(s4);
+
+
 
         Set<UserStories> us5 = new HashSet<>();
         Story s5 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
+        s5 = storyService.save(s5);
         User u5 = new User("lizjones",
                 "password",
                 "liz@school.lambda");
+        u5 = userService.save(u5);
         photoList.clear();
         Photo p9 = new Photo("https://picsum.photos/id/1007/200/300", "A new pic", s5);
         Photo p10 = new Photo("https://picsum.photos/id/1008/200/300", "A new pic", s5);
@@ -151,7 +160,5 @@ public class SeedData implements CommandLineRunner {
         us5.add(new UserStories(u5, s5));
         u5.setUserstories(us5);
         s5.setPhotos(photoList);
-        u5 = userService.save(u5);
-        s5 = storyService.save(s5);
     }
 }

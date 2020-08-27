@@ -1,5 +1,6 @@
 package com.lambdaschool.expat.models;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,6 +19,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "users")
+
 public class User extends Auditable {
     /**
      * The primary key (long) of the users table.
