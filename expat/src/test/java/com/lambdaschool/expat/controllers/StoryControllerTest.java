@@ -6,6 +6,7 @@ import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
 import com.lambdaschool.expat.models.UserStories;
 import com.lambdaschool.expat.services.StoryService;
+import com.lambdaschool.expat.services.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -50,7 +52,12 @@ public class StoryControllerTest {
     @MockBean
     private StoryService storyService;
 
+    @MockBean
+    private UserService userService;
+
     List<Story> storyList = new ArrayList<>();
+
+    User u1;
 
     @Before
     public void setUp() throws Exception {
@@ -62,7 +69,7 @@ public class StoryControllerTest {
         storyList = new ArrayList<>();
 
         storyService.deleteAll();
-        User u1 = new User("tomjones",
+        u1 = new User("tomjones",
                 "password",
                 "tom@lambdaschool.local");
         u1.setUserid(1);
@@ -182,21 +189,17 @@ public class StoryControllerTest {
     }
 
     @Test
-    public void addNewStory() throws Exception{
+    public void addNewStory() throws Exception {
         String apiUrl = "/stories/story";
 
         Story s2 = new Story("My Trip", "Thailand", "We had a great time in Bangkok...");
-        s2.setStoryid(10);
-
-        User u2 = new User("tomjones", "password", "tom@gmail.com");
-        u2.setUserid(20);
-
-        s2.getUserstories().add(new UserStories(u2, s2));
+        s2.setStoryid(30);
 
         ObjectMapper mapper = new ObjectMapper();
         String storyString = mapper.writeValueAsString(s2);
 
         Mockito.when(storyService.save(any(Story.class))).thenReturn(s2);
+        Mockito.when(userService.findByName(any(String.class))).thenReturn(u1);
 
         RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
                 .accept(MediaType.APPLICATION_JSON)
