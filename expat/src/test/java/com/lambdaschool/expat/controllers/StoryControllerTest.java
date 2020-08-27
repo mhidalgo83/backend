@@ -85,6 +85,14 @@ public class StoryControllerTest {
         s1.getUserstories().add(new UserStories(u1, new Story()));
         s1.setStoryid(10);
 
+        Story s3 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
+        s3.getUserstories().add(new UserStories(u1, new Story()));
+        s3.setStoryid(30);
+
+        Story s4 = new Story("My Trip", "New Zealand", "We had a great time in Auckland...");
+        s4.getUserstories().add(new UserStories(u1, new Story()));
+        s4.setStoryid(40);
+
         Story s2 = new Story("Another Trip", "Australia", "We had a great time in Sydney...");
         s2.getUserstories().add(new UserStories(u2, new Story()));
         s2.setStoryid(20);
@@ -147,8 +155,8 @@ public class StoryControllerTest {
 //
         storyList.add(s1);
         storyList.add(s2);
-//        storyList.add(s3);
-//        storyList.add(s4);
+        storyList.add(s3);
+        storyList.add(s4);
 //        storyList.add(s5);
 
 
@@ -157,6 +165,7 @@ public class StoryControllerTest {
     @After
     public void tearDown() throws Exception {
     }
+
 
     @Test
     public void listAllStories() throws Exception{
@@ -171,6 +180,25 @@ public class StoryControllerTest {
         String er = mapper.writeValueAsString(storyList);
 
         assertEquals(er, tr);
+    }
+
+    @Test
+    public void getStoriesByUserId() throws Exception{
+        String apiUrl = "/stories/stories/user/1";
+        Mockito.when(userService.findUserById(any(Long.class))).thenReturn(u1);
+        List<UserStories> list = new ArrayList<>();
+        for (UserStories s : u1.getUserstories()) {
+            list.add(s);
+        }
+
+        RequestBuilder rb = MockMvcRequestBuilders.get(apiUrl).accept(MediaType.APPLICATION_JSON);
+        MvcResult result = mockMvc.perform(rb).andReturn();
+        String testResult = result.getResponse().getContentAsString();
+
+        ObjectMapper mapper = new ObjectMapper();
+        String er = mapper.writeValueAsString(list);
+
+        assertEquals(er, testResult);
     }
 
     @Test
