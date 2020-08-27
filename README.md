@@ -1,7 +1,7 @@
 ### Expat Journal API
 
 Base URL for the application is:
-http://sj-mh-expat-journal.herokuapp.com/
+https://sj-mh-expat-journal.herokuapp.com/
 
 | Request                 | Endpoint                          | Request                                 | Res                  |
 |-------------------------|-----------------------------------|-----------------------------------------|----------------------|
