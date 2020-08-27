@@ -29,7 +29,7 @@ public class UserServiceImplTest {
 
     @Test
     public void findUserById() {
-        assertEquals("tomjones", userService.findUserById(1).getUsername());
+        assertEquals("tomjones", userService.findUserById(2).getUsername());
     }
 
     @Test

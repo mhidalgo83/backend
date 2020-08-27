@@ -1,14 +1,22 @@
 package com.lambdaschool.expat.controllers;
 
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.lambdaschool.expat.models.Story;
 import com.lambdaschool.expat.models.User;
 import com.lambdaschool.expat.models.UserStories;
 import com.lambdaschool.expat.services.StoryService;
 import com.lambdaschool.expat.services.UserService;
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.map.SerializerProvider;
+import org.codehaus.jackson.map.ser.BeanPropertyWriter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -50,6 +58,7 @@ public class StoryController {
         for (UserStories s : u.getUserstories()) {
             storyList.add(s);
         }
+
         return new ResponseEntity<>(storyList, HttpStatus.OK);
     }
 
