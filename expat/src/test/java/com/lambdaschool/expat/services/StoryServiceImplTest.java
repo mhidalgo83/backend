@@ -41,12 +41,12 @@ public class StoryServiceImplTest {
 
     @Test
     public void findStoryById() {
-        assertEquals("My Trip", storyService.findStoryById(6).getTitle());
+        assertEquals("Another Trip", storyService.findStoryById(5).getTitle());
     }
 
     @Test
     public void delete() {
-        storyService.delete(6);
+        storyService.delete(5);
         assertEquals(4, storyService.findAll().size());
     }
 
@@ -57,7 +57,7 @@ public class StoryServiceImplTest {
         User u5 = new User("Liz Jones",
                 "password",
                 "liz@school.lambda");
-        u5.setUserid(1);
+        u5.setUserid(2);
         s5.getUserstories().add(new UserStories(u5, s5));
         storyService.save(s5);
         assertEquals(6, storyService.findAll().size());
@@ -69,12 +69,12 @@ public class StoryServiceImplTest {
         User u5 = new User("Liz Jones",
                 "password",
                 "liz@school.lambda");
-        u5.setUserid(1);
+        u5.setUserid(2);
 
         Story s5 = new Story("Test Story", "Germany", "My travels begin...");
         s5.getUserstories().add(new UserStories(u5, s5));
 
-        Story updateds5 = storyService.update(s5, 6);
+        Story updateds5 = storyService.update(s5, 5);
 
         assertEquals("Test Story", updateds5.getTitle());
     }

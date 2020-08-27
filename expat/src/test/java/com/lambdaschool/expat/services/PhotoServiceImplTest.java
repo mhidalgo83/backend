@@ -41,8 +41,8 @@ public class PhotoServiceImplTest {
         Photo p1 = new Photo("test",
                 "test", s1
         );
-        photoService.save(p1, 6);
-        assertEquals(10, photoService.findAllPhotos().size());
+        photoService.save(p1, 5);
+        assertEquals(11, photoService.findAllPhotos().size());
     }
 
     @Test
@@ -53,35 +53,35 @@ public class PhotoServiceImplTest {
                 "test", s1
                 );
         photoService.seedSave(p1);
-        assertEquals(10, photoService.findAllPhotos().size());
+        assertEquals(11, photoService.findAllPhotos().size());
     }
 
     @Test
     public void update() {
         Story s1 = new Story("Test", "Test", "Test");
-        s1.setStoryid(6);
+        s1.setStoryid(1);
         Photo p1 = new Photo("test",
                 "test", s1
         );
-        photoService.update(p1, 11);
-        assertEquals("test", photoService.findPhotoById(11).getImageurl());
+        photoService.update(p1, 4);
+        assertEquals("test", photoService.findPhotoById(4).getImageurl());
 
     }
 
     @Test
     public void findPhotoById() {
-        assertEquals("https://picsum.photos/id/10/200/300", photoService.findAllPhotos().get(0).getImageurl());
+        assertEquals("https://picsum.photos/id/100/200/300", photoService.findPhotoById(4).getImageurl());
     }
 
     @Test
     public void findAllPhotos() {
-        assertEquals(9, photoService.findAllPhotos().size());
+        assertEquals(10, photoService.findAllPhotos().size());
     }
 
     @Test
     public void delete() {
-        photoService.delete(11);
-        assertEquals(8, photoService.findAllPhotos().size());
+        photoService.delete(4);
+        assertEquals(9, photoService.findAllPhotos().size());
     }
 
     @Test

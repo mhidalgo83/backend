@@ -44,7 +44,7 @@ public class UserServiceImplTest {
 
     @Test
     public void delete() {
-        userService.delete(1);
+        userService.delete(2);
         assertEquals(4, userService.findAll().size());
     }
 
@@ -62,8 +62,8 @@ public class UserServiceImplTest {
         User u1 = new User("test",
                 "password",
                 "tom@lambdaschool.local");
-        userService.update(u1, 1);
-        assertEquals("test", userService.findUserById(1).getUsername());
+        userService.update(u1, 2);
+        assertEquals("test", userService.findUserById(2).getUsername());
     }
 
     @Test
