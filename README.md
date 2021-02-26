@@ -1,6 +1,6 @@
 ### Expat Journal API
 
-This is the backend of a full-stack application project. The backend is built in Java utilizing the Spring Boot framework, with a PostrgreSQL database. All controllers and servies have been test using JUnit and built-in testing tools inside Spring.  
+This is the backend of a full-stack application project. The backend is built in Java utilizing the Spring Boot framework, with a PostrgreSQL database. All controllers and services have been test using JUnit and built-in testing tools inside Spring.  
 
 Base URL for the application is:
 https://sj-mh-expat-journal.herokuapp.com/
